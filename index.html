@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Api Dog</title>
+</head>
+<body>
+    <img id="pic">
+
+    <script>
+
+        var httpRequest = new XMLHttpRequest();
+        httpRequest.open("get", "https://dog.ceo/api/breeds/image/random");
+        httpRequest.send();
+
+
+        //waiting for the response from the server
+        httpRequest.onreadystatechange = aFunction;
+
+        function aFunction()
+        {
+            if (httpRequest.readyState == 4 && httpRequest.status == 200)
+            {
+                var dogs = httpRequest.responseText;
+                console.log(typeof(dogs))
+                var dogsObj = JSON.parse(dogs);
+                console.log(dogsObj);
+                document.getElementById('pic').src = dogsObj.message
+            }
+        }
+
+    </script>
+
+
+</body>
+</html>
